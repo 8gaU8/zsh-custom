@@ -12,3 +12,6 @@ git fetch --quiet
 if git status -uno | grep -q 'Your branch is behind'; then
   echo "\033[0;33m[oh-my-zsh custom] Your custom scripts are not up to date. Please run 'git pull' in ~/.oh-my-zsh/custom.\033[0m"
 fi
+
+# Go back to the original directory
+cd - >/dev/null 2>&1
