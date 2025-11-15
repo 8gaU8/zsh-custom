@@ -1,3 +1,6 @@
+# update path
+export PATH="/Users/hagayuya/.local/bin:$PATH"
+
 # ghcup
 source ${HOME}/.ghcup/env
 

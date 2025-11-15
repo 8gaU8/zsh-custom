@@ -1,2 +1,7 @@
-alias o="open"
+alias o="/usr/bin/open"
 alias c="/opt/homebrew/bin/code ."
+alias vi="/opt/homebrew/bin/nvim"
+alias pbc="/usr/bin/pbcopy"
+alias pbp="/usr/bin/pbpaste"
+
+abbr -S ghvw='gh repo view --web'
