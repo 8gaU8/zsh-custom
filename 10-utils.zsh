@@ -26,5 +26,23 @@
             return 1
         fi
     }
+    
+    source_if_exists() {
+        local file="$1"
+        
+        if [[ -z "$file" ]]; then
+            echo "Error: Directory argument is required." >&2
+            return 1
+        fi
+
+        if [[ -d "$file" ]]; then
+            # PATHの先頭に追加
+            source "$file"
+            export PATH
+        else
+            echo "Warning: File not found. Skipping sourcing it: $file" >&2
+            return 1
+        fi
+    }
 
 }
