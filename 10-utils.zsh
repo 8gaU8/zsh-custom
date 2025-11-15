@@ -38,7 +38,6 @@
         if [[ -d "$file" ]]; then
             # PATHの先頭に追加
             source "$file"
-            export PATH
         else
             echo "Warning: File not found. Skipping sourcing it: $file" >&2
             return 1
