@@ -2,7 +2,7 @@
 # これにより、このファイルの処理が完了すると、
 # この関数内のローカル変数とともに、関数add_to_path_if_existsの定義も消滅します。
 () {
-    source /Users/hagayuya/.local/usr/shell-logger/etc/shell-logger
+    source "${HOME}/.local/usr/shell-logger/etc/shell-logger"
 
     # example
     # $ add_to_path_if_exists "/usr/local/bin"
