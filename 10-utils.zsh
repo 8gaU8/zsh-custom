@@ -2,6 +2,8 @@
 # これにより、このファイルの処理が完了すると、
 # この関数内のローカル変数とともに、関数add_to_path_if_existsの定義も消滅します。
 () {
+    source /Users/hagayuya/.local/usr/shell-logger/etc/shell-logger
+
     # example
     # $ add_to_path_if_exists "/usr/local/bin"
 
@@ -13,7 +15,7 @@
         local dir="$1"
         
         if [[ -z "$dir" ]]; then
-            echo "Error: Directory argument is required." >&2
+            error "add_to_path_if_exists: Directory argument is required."
             return 1
         fi
 
@@ -22,7 +24,7 @@
             path=("$dir" $path)
             export PATH
         else
-            echo "Warning: Directory not found. Skipping addition to PATH: $dir" >&2
+            warn "Directory not found. Skipping addition to PATH: $dir"
             return 1
         fi
     }
@@ -31,7 +33,7 @@
         local file="$1"
         
         if [[ -z "$file" ]]; then
-            echo "Error: Directory argument is required." >&2
+            error "Directory argument is required."
             return 1
         fi
 
@@ -39,7 +41,7 @@
             # PATHの先頭に追加
             source "$file"
         else
-            echo "Warning: File not found. Skipping sourcing it: $file" >&2
+            warn "File not found. Skipping sourcing it: $file" 
             return 1
         fi
     }
