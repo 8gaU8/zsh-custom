@@ -26,7 +26,7 @@ else
 fi
 
 ## ghcup
-source_if_exists ${HOME}/.ghcup/env
+source ${HOME}/.ghcup/env | warn
 
 #* === Completions ===
 
