@@ -37,6 +37,12 @@ else
   warn "uv command not found, skipping uv autocompletion setup."
 fi
 
+## tailscale
+if command -v tailscale &> /dev/null; then
+  eval "$(tailscale completion zsh)"
+else
+  warn "Tailscale command not found, skipping tailscale autocompletion setup."
+fi
 
 #* === Environment Variables ===
 
