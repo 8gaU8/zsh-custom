@@ -64,7 +64,7 @@
           return 1
         fi
 
-        if [[ -f "${cache_file}" && $(( $(date +%s) - $(stat -f %m "${cache_file}") )) -lt 86400 ]]; then
+        if [[ -f "${cache_file}" ]]; then
             # キャッシュが存在し、24時間以内に更新されている場合はキャッシュを使用
             info "Using cached completion for command: ${base_cmd}"
             source "${cache_file}"
