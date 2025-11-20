@@ -46,4 +46,34 @@
         fi
     }
 
+    cached_completion(){
+        local base_cmd="${1}"
+        local commands="${*}"
+        local cache_dir="${HOME}/.cache/zsh_completion"
+        [[ ! -d "${cache_dir}" ]] && mkdir -p "${cache_dir}"
+        local cache_file="${cache_dir}/${base_cmd}.zsh"
+        
+        if [[ -z "${base_cmd}" ]]; then
+            error "cached_completion: Command argument is required."
+            return 1
+        fi
+
+        # check command existence
+        if ! command -v ${base_cmd} &> /dev/null; then
+          warn "${base_cmd} command not found, skipping ${base_cmd} autocompletion setup."
+        fi
+
+        if [[ -f "${cache_file}" && $(( $(date +%s) - $(stat -f %m "${cache_file}") )) -lt 86400 ]]; then
+            # キャッシュが存在し、24時間以内に更新されている場合はキャッシュを使用
+            info "Using cached completion for command: ${base_cmd}"
+            source "${cache_file}"
+        else
+            # キャッシュが存在しないか、古い場合は新たに生成
+            info "Generating completion cache for command: ${base_cmd}"
+            eval "${commands}" >| "${cache_file}"
+            source "${cache_file}"
+        fi
+
+    }
+
 }
