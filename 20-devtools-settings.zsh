@@ -30,19 +30,10 @@ source ${HOME}/.ghcup/env | warn
 
 #* === Completions ===
 
-## uv
-if command -v uv &> /dev/null; then
-  eval "$(uv generate-shell-completion zsh)"
-else
-  warn "uv command not found, skipping uv autocompletion setup."
-fi
-
-## tailscale
-if command -v tailscale &> /dev/null; then
-  eval "$(tailscale completion zsh)"
-else
-  warn "Tailscale command not found, skipping tailscale autocompletion setup."
-fi
+cached_completion tailscale completion zsh
+cached_completion uv generate-shell-completion zsh
+cached_completion gh completion -s zsh
+cached_completion mise completion zsh
 
 #* === Environment Variables ===
 
