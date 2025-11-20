@@ -61,6 +61,7 @@
         # check command existence
         if ! command -v ${base_cmd} &> /dev/null; then
           warn "${base_cmd} command not found, skipping ${base_cmd} autocompletion setup."
+          return 1
         fi
 
         if [[ -f "${cache_file}" && $(( $(date +%s) - $(stat -f %m "${cache_file}") )) -lt 86400 ]]; then
